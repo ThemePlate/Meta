@@ -55,14 +55,14 @@ abstract class Base {
 		$meta_box = $this->config;
 
 		foreach ( $meta_box['fields'] as $id => $field ) {
-			$key = ThemePlate()->key . '_' . $meta_box['id'] . '_' . $id;
+			$key = $meta_box['id'] . '_' . $id;
 
-			if ( ! isset( $_POST[ ThemePlate()->key ][ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( ! isset( $_POST['themeplate'][ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				continue;
 			}
 
 			$stored  = get_metadata( $meta_box['object_type'], $object_id, $key, ! $field['repeatable'] );
-			$updated = $_POST[ ThemePlate()->key ][ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
+			$updated = $_POST['themeplate'][ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
 			$cleaned = Box::prepare_save( $updated );
 
 			if ( is_array( $cleaned ) ) {
@@ -117,7 +117,7 @@ abstract class Base {
 				continue;
 			}
 
-			$field['id']          = ThemePlate()->key . '_' . $meta_box['id'] . '_' . $id;
+			$field['id']          = $meta_box['id'] . '_' . $id;
 			$field['object_type'] = $meta_box['object_type'];
 
 			$args = array(
