@@ -1,6 +1,7 @@
 {
     "name": "themeplate/meta",
     "description" : "ThemePlate custom meta boxes",
+    "type": "wordpress-dropin",
     "license": "GPL-3.0",
     "authors": [
         {
@@ -9,7 +10,8 @@
         }
     ],
     "require": {
-    	"themeplate/core": "*"
+        "composer/installers": "^1.0",
+        "themeplate/core": "*"
     },
     "autoload": {
         "psr-4": {
