@@ -29,13 +29,13 @@ abstract class Base {
 		);
 
 		if ( ! Main::is_complete( $config, $expected ) ) {
-			throw new Exception();
+			throw new \Exception();
 		}
 
 		try {
 			$this->form = new Form( $config );
-		} catch ( Exception $e ) {
-			throw new Exception( $e );
+		} catch ( \Exception $e ) {
+			throw new \Exception( $e );
 		}
 
 		$config['fields'] = $this->form->get_fields();

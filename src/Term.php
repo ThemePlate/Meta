@@ -22,8 +22,8 @@ class Term extends Base {
 
 		try {
 			parent::__construct( $config );
-		} catch ( Exception $e ) {
-			throw new Exception( $e );
+		} catch ( \Exception $e ) {
+			throw new \Exception( $e );
 		}
 
 		if ( empty( $config['taxonomy'] ) ) {
