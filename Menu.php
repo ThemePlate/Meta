@@ -9,6 +9,7 @@
 
 namespace ThemePlate\Meta;
 
+use Exception;
 use ThemePlate\Core\Helper\Box;
 use ThemePlate\Core\Helper\Main;
 
@@ -20,8 +21,8 @@ class Menu extends Base {
 
 		try {
 			parent::__construct( $config );
-		} catch ( \Exception $e ) {
-			throw new \Exception( $e );
+		} catch ( Exception $e ) {
+			throw new Exception( $e );
 		}
 
 		$defaults = array(
@@ -47,6 +48,7 @@ class Menu extends Base {
 
 		global $wp_version;
 
+		/* phpcs:disable Generic.WhiteSpace.ScopeIndent.IncorrectExact */
 		printf( '<div id="themeplate_%s" class="tpo postbox description-wide">', esc_attr( $this->config['id'] ) );
 
 			if ( version_compare( $wp_version, '5.5', '<' ) ) {
@@ -61,6 +63,7 @@ class Menu extends Base {
 				$this->form->layout_inside( $item_id );
 			echo '</div>';
 		echo '</div>';
+		/* phpcs:enable Generic.WhiteSpace.ScopeIndent.IncorrectExact */
 
 	}
 
@@ -100,6 +103,6 @@ class Menu extends Base {
 	}
 
 
-	protected function column_data( array $args ): void {}
+	protected function column_data( array $args ): void { }
 
 }

@@ -9,6 +9,7 @@
 
 namespace ThemePlate\Meta;
 
+use Exception;
 use ThemePlate\Column;
 use ThemePlate\Core\Helper\Box;
 use ThemePlate\Core\Helper\Main;
@@ -22,8 +23,8 @@ class Term extends Base {
 
 		try {
 			parent::__construct( $config );
-		} catch ( \Exception $e ) {
-			throw new \Exception( $e );
+		} catch ( Exception $e ) {
+			throw new Exception( $e );
 		}
 
 		if ( empty( $config['taxonomy'] ) ) {
@@ -110,7 +111,7 @@ class Term extends Base {
 			return false;
 		}
 
-		if ( 'edit-tags' === $screen->base && ! Meta::should_display( $meta_box, '' ) ) {
+		if ( 'edit-tags' === $screen->base && ! Meta::should_display( $meta_box, 0 ) ) {
 			return false;
 		}
 

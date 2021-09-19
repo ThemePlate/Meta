@@ -9,6 +9,7 @@
 
 namespace ThemePlate\Meta;
 
+use Exception;
 use ThemePlate\Column;
 use ThemePlate\Core\Helper\Main;
 use ThemePlate\Core\Helper\Meta;
@@ -21,8 +22,8 @@ class Post extends Base {
 
 		try {
 			parent::__construct( $config );
-		} catch ( \Exception $e ) {
-			throw new \Exception( $e );
+		} catch ( Exception $e ) {
+			throw new Exception( $e );
 		}
 
 		$defaults = array(

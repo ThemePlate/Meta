@@ -9,6 +9,7 @@
 
 namespace ThemePlate\Meta;
 
+use Exception;
 use ThemePlate\Column;
 use ThemePlate\Core\Helper\Box;
 use ThemePlate\Core\Helper\Main;
@@ -22,8 +23,8 @@ class User extends Base {
 
 		try {
 			parent::__construct( $config );
-		} catch ( \Exception $e ) {
-			throw new \Exception( $e );
+		} catch ( Exception $e ) {
+			throw new Exception( $e );
 		}
 
 		$defaults = array(
