@@ -65,7 +65,7 @@ class Post extends Base {
 
 	public function add(): void {
 
-		$this->form->layout_inside( get_the_ID() );
+		$this->form->layout_inside( (string) get_the_ID() );
 
 	}
 

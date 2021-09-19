@@ -40,7 +40,7 @@ class Menu extends Base {
 	}
 
 
-	public function create( int $item_id ): void {
+	public function create( string $item_id ): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
