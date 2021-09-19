@@ -16,7 +16,7 @@ use ThemePlate\Core\Helper\Meta;
 
 class User extends Base {
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 
 		$config['object_type'] = 'user';
 
@@ -47,20 +47,20 @@ class User extends Base {
 	}
 
 
-	public function create( $user ) {
+	public function create( $user ): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
 		}
 
-		$user_id = is_object( $user ) ? $user->ID : '';
+		$user_id = is_object( $user ) ? $user->ID : 0;
 
 		$this->form->layout_postbox( $user_id );
 
 	}
 
 
-	public function save( $user_id ) {
+	public function save( int $user_id ): void {
 
 		if ( ! $this->can_save() ) {
 			return;
@@ -75,7 +75,7 @@ class User extends Base {
 	}
 
 
-	public function scripts_styles() {
+	public function scripts_styles(): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
@@ -86,7 +86,7 @@ class User extends Base {
 	}
 
 
-	private function is_valid_screen() {
+	private function is_valid_screen(): bool {
 
 		$screen = get_current_screen();
 
@@ -109,7 +109,7 @@ class User extends Base {
 	}
 
 
-	protected function column_data( $args ) {
+	protected function column_data( array $args ): void {
 
 		$args['users'] = true;
 

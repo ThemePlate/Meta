@@ -16,11 +16,11 @@ use ThemePlate\Core\Helper\Meta;
 
 abstract class Base {
 
-	protected $config;
-	protected $form;
+	protected array $config;
+	protected Form $form;
 
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 
 		$expected = array(
 			'object_type',
@@ -50,7 +50,7 @@ abstract class Base {
 	}
 
 
-	public function save( $object_id ) {
+	public function save( int $object_id ): void {
 
 		$meta_box = $this->config;
 		$not_menu = true;
@@ -102,7 +102,7 @@ abstract class Base {
 	}
 
 
-	public function can_save() {
+	public function can_save(): bool {
 
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return false;
@@ -115,7 +115,7 @@ abstract class Base {
 	}
 
 
-	public function columns() {
+	public function columns(): void {
 
 		$meta_box = $this->config;
 
@@ -140,6 +140,6 @@ abstract class Base {
 	}
 
 
-	abstract protected function column_data( $args );
+	abstract protected function column_data( array $args );
 
 }

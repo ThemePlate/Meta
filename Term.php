@@ -16,7 +16,7 @@ use ThemePlate\Core\Helper\Meta;
 
 class Term extends Base {
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 
 		$config['object_type'] = 'term';
 
@@ -57,20 +57,20 @@ class Term extends Base {
 	}
 
 
-	public function create( $tag ) {
+	public function create( $tag ): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
 		}
 
-		$term_id = is_object( $tag ) ? $tag->term_id : '';
+		$term_id = is_object( $tag ) ? $tag->term_id : 0;
 
 		$this->form->layout_postbox( $term_id );
 
 	}
 
 
-	public function save( $term_id ) {
+	public function save( int $term_id ): void {
 
 		if ( ! $this->can_save() ) {
 			return;
@@ -85,7 +85,7 @@ class Term extends Base {
 	}
 
 
-	public function scripts_styles() {
+	public function scripts_styles(): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
@@ -96,7 +96,7 @@ class Term extends Base {
 	}
 
 
-	private function is_valid_screen() {
+	private function is_valid_screen(): bool {
 
 		$screen = get_current_screen();
 
@@ -123,7 +123,7 @@ class Term extends Base {
 	}
 
 
-	protected function column_data( $args ) {
+	protected function column_data( array $args ): void {
 
 		foreach ( $this->config['taxonomy'] as $taxonomy ) {
 			$args['taxonomy'] = $taxonomy;

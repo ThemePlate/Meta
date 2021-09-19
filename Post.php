@@ -15,7 +15,7 @@ use ThemePlate\Core\Helper\Meta;
 
 class Post extends Base {
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 
 		$config['object_type'] = 'post';
 
@@ -45,7 +45,7 @@ class Post extends Base {
 	}
 
 
-	public function create() {
+	public function create(): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
@@ -62,14 +62,14 @@ class Post extends Base {
 	}
 
 
-	public function add() {
+	public function add(): void {
 
 		$this->form->layout_inside( get_the_ID() );
 
 	}
 
 
-	public function save( $post_id ) {
+	public function save( int $post_id ): void {
 
 		if ( ! $this->can_save() ) {
 			return;
@@ -90,7 +90,7 @@ class Post extends Base {
 	}
 
 
-	public function scripts_styles() {
+	public function scripts_styles(): void {
 
 		if ( ! $this->is_valid_screen() ) {
 			return;
@@ -101,7 +101,7 @@ class Post extends Base {
 	}
 
 
-	private function is_valid_screen() {
+	private function is_valid_screen(): bool {
 
 		$screen = get_current_screen();
 
@@ -124,7 +124,7 @@ class Post extends Base {
 	}
 
 
-	protected function column_data( $args ) {
+	protected function column_data( array $args ): void {
 
 		$meta_box = $this->config;
 
