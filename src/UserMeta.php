@@ -49,9 +49,17 @@ class UserMeta extends BaseMeta {
 
 	public function save_data( int $object_id ): void {
 
+		$this->current_id = $object_id;
+
+		if ( 'user_register' === current_action() ) {
+			$object_id = 0;
+		}
+
 		if ( ! $this->can_save( $object_id ) ) {
 			return;
 		}
+
+		$object_id = $this->current_id;
 
 		if ( ! current_user_can( 'edit_user', $object_id ) ) {
 			return;
