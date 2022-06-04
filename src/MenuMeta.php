@@ -22,6 +22,13 @@ class MenuMeta extends BaseMeta {
 	}
 
 
+	protected function fields_group_key(): string {
+
+		return parent::fields_group_key() . '_' . $this->current_id;
+
+	}
+
+
 	public function create(): void {
 
 		$priority = Box::get_priority( $this->config );
@@ -43,6 +50,8 @@ class MenuMeta extends BaseMeta {
 
 
 	public function save_data( int $object_id ): void {
+
+		$this->current_id = $object_id;
 
 		if ( ! $this->can_save( $object_id ) ) {
 			return;
