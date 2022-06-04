@@ -34,7 +34,7 @@ class TermMeta extends BaseMeta {
 		foreach ( $this->locations as $taxonomy ) {
 			add_action( $taxonomy . '_add_form', array( $this, 'add_box' ), $priority );
 			add_action( $taxonomy . '_edit_form', array( $this, 'add_box' ), $priority );
-			add_action( 'saved_' . $taxonomy, array( $this, 'save_data' ) );
+			add_action( 'saved_' . $taxonomy, array( $this, 'save_data' ), 10, 3 );
 		}
 
 		add_action( 'admin_footer', array( $this, 'maybe_wanted_page' ) );
@@ -51,17 +51,21 @@ class TermMeta extends BaseMeta {
 	}
 
 
-	public function save_data( int $object_id ): void {
+	public function save_data( int $term_id, int $tt_id, bool $update ): void {
 
-		if ( ! $this->can_save( $object_id ) ) {
+		if ( ! $update ) {
+			$term_id = 0;
+		}
+
+		if ( ! $this->can_save( $term_id ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( 'edit_term', $object_id ) ) {
+		if ( ! current_user_can( 'edit_term', $tt_id ) ) {
 			return;
 		}
 
-		$this->save( $object_id );
+		$this->save( $tt_id );
 
 	}
 
