@@ -32,7 +32,7 @@ class UserMeta extends BaseMeta {
 		add_action( 'user_new_form', array( $this, 'add_box' ), $priority );
 		add_action( 'personal_options_update', array( $this, 'save_data' ) );
 		add_action( 'edit_user_profile_update', array( $this, 'save_data' ) );
-		add_action( 'user_register', array( $this, 'save_data' ) );
+		add_action( 'edit_user_created_user', array( $this, 'save_data' ) );
 		add_action( 'admin_footer', array( $this, 'maybe_wanted_page' ) );
 
 	}
@@ -51,7 +51,7 @@ class UserMeta extends BaseMeta {
 
 		$this->current_id = $object_id;
 
-		if ( 'user_register' === current_action() ) {
+		if ( 'edit_user_created_user' === current_action() ) {
 			$object_id = 0;
 		}
 
