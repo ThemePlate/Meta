@@ -9,9 +9,9 @@
 
 namespace ThemePlate\Meta;
 
-use ThemePlate\Core\Helper\Box;
-use ThemePlate\Core\Helper\Form;
-use ThemePlate\Core\Helper\Meta;
+use ThemePlate\Core\Helper\BoxHelper;
+use ThemePlate\Core\Helper\FormHelper;
+use ThemePlate\Core\Helper\MetaHelper;
 use WP_User;
 
 class UserMeta extends BaseMeta {
@@ -25,7 +25,7 @@ class UserMeta extends BaseMeta {
 
 	public function create(): void {
 
-		$priority = Box::get_priority( $this->config );
+		$priority = BoxHelper::get_priority( $this->config );
 
 		add_action( 'show_user_profile', array( $this, 'add_box' ), $priority );
 		add_action( 'edit_user_profile', array( $this, 'add_box' ), $priority );
@@ -78,11 +78,11 @@ class UserMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! Meta::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
 			return;
 		}
 
-		Form::enqueue_assets( $hook_suffix );
+		FormHelper::enqueue_assets( $hook_suffix );
 
 	}
 

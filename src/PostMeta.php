@@ -9,8 +9,8 @@
 
 namespace ThemePlate\Meta;
 
-use ThemePlate\Core\Helper\Form;
-use ThemePlate\Core\Helper\Meta;
+use ThemePlate\Core\Helper\FormHelper;
+use ThemePlate\Core\Helper\MetaHelper;
 use ThemePlate\Meta\Traits\HasLocation;
 use WP_Post;
 
@@ -89,11 +89,11 @@ class PostMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! Meta::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
 			return;
 		}
 
-		Form::enqueue_assets( $hook_suffix );
+		FormHelper::enqueue_assets( $hook_suffix );
 
 	}
 

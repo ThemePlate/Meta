@@ -9,9 +9,9 @@
 
 namespace ThemePlate\Meta;
 
-use ThemePlate\Core\Helper\Box;
-use ThemePlate\Core\Helper\Form;
-use ThemePlate\Core\Helper\Meta;
+use ThemePlate\Core\Helper\BoxHelper;
+use ThemePlate\Core\Helper\FormHelper;
+use ThemePlate\Core\Helper\MetaHelper;
 use ThemePlate\Meta\Traits\HasLocation;
 use WP_Term;
 
@@ -29,7 +29,7 @@ class TermMeta extends BaseMeta {
 
 	public function create(): void {
 
-		$priority = Box::get_priority( $this->config );
+		$priority = BoxHelper::get_priority( $this->config );
 
 		foreach ( $this->locations as $taxonomy ) {
 			add_action( $taxonomy . '_add_form', array( $this, 'add_box' ), $priority );
@@ -82,11 +82,11 @@ class TermMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! Meta::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
 			return;
 		}
 
-		Form::enqueue_assets( $hook_suffix );
+		FormHelper::enqueue_assets( $hook_suffix );
 
 	}
 

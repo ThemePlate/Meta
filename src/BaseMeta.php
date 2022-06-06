@@ -11,7 +11,7 @@ namespace ThemePlate\Meta;
 
 use ThemePlate\Core\Field;
 use ThemePlate\Core\Form;
-use ThemePlate\Core\Helper\Box;
+use ThemePlate\Core\Helper\BoxHelper;
 
 abstract class BaseMeta extends Form {
 
@@ -88,7 +88,7 @@ abstract class BaseMeta extends Form {
 			$updated = $_POST[ $this->fields_group_key() ][ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
 
 			if ( is_array( $updated ) ) {
-				$updated = Box::prepare_save( $updated );
+				$updated = BoxHelper::prepare_save( $updated );
 				$updated = array_filter( $updated );
 			}
 
