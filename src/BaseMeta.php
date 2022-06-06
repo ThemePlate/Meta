@@ -9,6 +9,7 @@
 
 namespace ThemePlate\Meta;
 
+use ThemePlate\Core\Config;
 use ThemePlate\Core\Field;
 use ThemePlate\Core\Form;
 use ThemePlate\Core\Helper\BoxHelper;
@@ -114,6 +115,13 @@ abstract class BaseMeta extends Form {
 				}
 			}
 		}
+
+	}
+
+
+	public function get_config(): Config {
+
+		return new Config( $this->config['data_prefix'], array( $this->config['object_type'] ), $this->fields );
 
 	}
 

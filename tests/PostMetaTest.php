@@ -26,4 +26,12 @@ class PostMetaTest extends WP_UnitTestCase {
 		$this->assertSame( 10, has_filter( 'save_post_' . $location, array( $this->meta_box, 'save_data' ) ) );
 		$this->assertSame( 10, has_filter( 'admin_footer', array( $this->meta_box, 'maybe_wanted_page' ) ) );
 	}
+
+	public function test_get_config(): void {
+		$config = $this->meta_box->get_config();
+
+		$this->assertSame( '', $config->get_prefix() );
+		$this->assertSame( array( 'post' ), $config->get_types() );
+		$this->assertSame( null, $config->get_fields() );
+	}
 }
