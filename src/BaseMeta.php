@@ -10,13 +10,20 @@
 namespace ThemePlate\Meta;
 
 use ThemePlate\Core\Config;
-use ThemePlate\Core\Field;
 use ThemePlate\Core\Form;
+use ThemePlate\Core\Handler;
 use ThemePlate\Core\Helper\BoxHelper;
 
 abstract class BaseMeta extends Form {
 
 	protected int $current_id = 0;
+
+
+	protected function get_handler(): Handler {
+
+		return new MetaHandler( $this->config['object_type'] );
+
+	}
 
 
 	protected function fields_group_key(): string {
@@ -42,21 +49,6 @@ abstract class BaseMeta extends Form {
 		$data = $this->get_nonce_data( $current_id );
 
 		wp_nonce_field( $data['action'], $data['name'] );
-
-	}
-
-
-	protected function get_field_value( Field $field, string $current_id ) {
-
-		$meta_prefix = $this->config['data_prefix'];
-		$object_type = $this->config['object_type'];
-		$meta_key    = $field->data_key( $meta_prefix );
-		$repeatable  = $field->get_config( 'repeatable' );
-
-		$stored = get_metadata( $object_type, $current_id, $meta_key, ! $repeatable ) ?? '';
-
-		// phpcs:ignore WordPress.PHP.DisallowShortTernary.Found
-		return $stored ?: $field->get_config( 'default' );
 
 	}
 
@@ -121,7 +113,7 @@ abstract class BaseMeta extends Form {
 
 	public function get_config(): Config {
 
-		return new Config( $this->config['data_prefix'], array( $this->config['object_type'] ), $this->fields );
+		return new Config( $this->config['data_prefix'], $this->fields );
 
 	}
 
