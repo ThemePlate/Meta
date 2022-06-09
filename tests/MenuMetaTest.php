@@ -6,6 +6,7 @@
 
 namespace Tests;
 
+use ThemePlate\Core\Field\ColorField;
 use ThemePlate\Meta\MenuMeta;
 use WP_UnitTestCase;
 
@@ -27,8 +28,14 @@ class MenuMetaTest extends WP_UnitTestCase {
 	public function test_get_config(): void {
 		$config = $this->meta_box->get_config();
 
-		$this->assertSame( '', $config->get_prefix() );
-		$this->assertSame( array( 'post' ), $config->get_types() );
-		$this->assertSame( null, $config->get_fields() );
+		$this->assertSame( array(), $config->get_fields() );
+
+		$this->meta_box->fields( array( 'test' => array( 'type' => 'color' ) ) );
+
+		$config = $this->meta_box->get_config();
+		$fields = $config->get_fields();
+
+		$this->assertArrayHasKey( 'test', $fields );
+		$this->assertInstanceOf( ColorField::class, $fields['test'] );
 	}
 }

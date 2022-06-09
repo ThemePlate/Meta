@@ -6,6 +6,7 @@
 
 namespace Tests;
 
+use ThemePlate\Core\Field\LinkField;
 use ThemePlate\Meta\TermMeta;
 use WP_UnitTestCase;
 
@@ -31,8 +32,14 @@ class TermMetaTest extends WP_UnitTestCase {
 	public function test_get_config(): void {
 		$config = $this->meta_box->get_config();
 
-		$this->assertSame( '', $config->get_prefix() );
-		$this->assertSame( array( 'term' ), $config->get_types() );
-		$this->assertSame( null, $config->get_fields() );
+		$this->assertSame( array(), $config->get_fields() );
+
+		$this->meta_box->fields( array( 'test' => array( 'type' => 'link' ) ) );
+
+		$config = $this->meta_box->get_config();
+		$fields = $config->get_fields();
+
+		$this->assertArrayHasKey( 'test', $fields );
+		$this->assertInstanceOf( LinkField::class, $fields['test'] );
 	}
 }
