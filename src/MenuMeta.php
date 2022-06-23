@@ -15,9 +15,14 @@ use ThemePlate\Core\Helper\MetaHelper;
 
 class MenuMeta extends BaseMeta {
 
+	protected array $locations = array();
+
+
 	protected function initialize( array &$config ): void {
 
 		$config['object_type'] = 'post';
+
+		$this->locations = array( 'nav_menu_item' );
 
 	}
 
