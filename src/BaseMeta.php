@@ -127,6 +127,7 @@ abstract class BaseMeta extends Form {
 
 		$prefix = $this->config['data_prefix'];
 		$schema = FieldsHelper::build_schema( $this->fields, $prefix );
+		$types  = property_exists( $this, 'locations' ) ? $this->locations : array( '' );
 
 		foreach ( $this->fields->get_collection() as $field ) {
 			$args = $schema[ $field->data_key( $prefix ) ];
@@ -135,7 +136,11 @@ abstract class BaseMeta extends Form {
 
 			$args['show_in_rest'] = array( 'schema' => $schema[ $field->data_key( $prefix ) ] );
 
-			register_meta( $this->config['object_type'], $field->data_key( $prefix ), $args );
+			foreach ( $types as $type ) {
+				$args['object_subtype'] = $type;
+
+				register_meta( $this->config['object_type'], $field->data_key( $prefix ), $args );
+			}
 		}
 
 	}
