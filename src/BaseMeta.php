@@ -13,6 +13,7 @@ use ThemePlate\Core\Config;
 use ThemePlate\Core\Form;
 use ThemePlate\Core\Handler;
 use ThemePlate\Core\Helper\BoxHelper;
+use ThemePlate\Core\Helper\FieldsHelper;
 
 abstract class BaseMeta extends Form {
 
@@ -114,6 +115,28 @@ abstract class BaseMeta extends Form {
 	public function get_config(): Config {
 
 		return new Config( $this->config['data_prefix'], $this->fields );
+
+	}
+
+
+	public function register_meta(): void {
+
+		if ( null === $this->fields ) {
+			return;
+		}
+
+		$prefix = $this->config['data_prefix'];
+		$schema = FieldsHelper::build_schema( $this->fields, $prefix );
+
+		foreach ( $this->fields->get_collection() as $field ) {
+			$args = $schema[ $field->data_key( $prefix ) ];
+
+			$args['single'] = ! $field->get_config( 'repeatable' );
+
+			$args['show_in_rest'] = array( 'schema' => $schema[ $field->data_key( $prefix ) ] );
+
+			register_meta( $this->config['object_type'], $field->data_key( $prefix ), $args );
+		}
 
 	}
 

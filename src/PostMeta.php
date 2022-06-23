@@ -35,6 +35,8 @@ class PostMeta extends BaseMeta {
 
 		add_action( 'admin_footer', array( $this, 'maybe_wanted_page' ) );
 
+		$this->register_meta();
+
 	}
 
 

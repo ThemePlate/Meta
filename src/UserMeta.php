@@ -35,6 +35,8 @@ class UserMeta extends BaseMeta {
 		add_action( 'edit_user_created_user', array( $this, 'save_data' ) );
 		add_action( 'admin_footer', array( $this, 'maybe_wanted_page' ) );
 
+		$this->register_meta();
+
 	}
 
 

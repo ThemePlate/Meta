@@ -37,6 +37,8 @@ class MenuMeta extends BaseMeta {
 		add_action( 'save_post_nav_menu_item', array( $this, 'save_data' ) );
 		add_action( 'admin_footer', array( $this, 'maybe_wanted_page' ) );
 
+		$this->register_meta();
+
 	}
 
 
