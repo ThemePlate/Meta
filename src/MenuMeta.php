@@ -51,6 +51,10 @@ class MenuMeta extends BaseMeta {
 
 		$this->current_id = $item_id;
 
+		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+			return;
+		}
+
 		$this->layout_postbox( $this->current_id );
 
 	}

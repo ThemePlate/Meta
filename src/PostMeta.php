@@ -40,11 +40,15 @@ class PostMeta extends BaseMeta {
 	}
 
 
-	public function add_box( WP_Post $post ) {
-
-		$config = $this->config;
+	public function add_box( WP_Post $post ): void {
 
 		$this->current_id = $post->ID;
+
+		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+			return;
+		}
+
+		$config = $this->config;
 
 		add_meta_box(
 			$this->fields_group_key() . '_' . $config['form_id'],
