@@ -47,7 +47,7 @@ abstract class BaseMeta extends Form {
 
 	protected function maybe_nonce_fields( string $current_id ): void {
 
-		$data = $this->get_nonce_data( $current_id );
+		$data = $this->get_nonce_data( (int) $current_id );
 
 		wp_nonce_field( $data['action'], $data['name'] );
 

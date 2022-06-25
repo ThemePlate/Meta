@@ -44,11 +44,11 @@ class UserMeta extends BaseMeta {
 
 		$this->current_id = $user instanceof WP_User ? $user->ID : 0;
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, (string) $this->current_id ) ) {
 			return;
 		}
 
-		$this->layout_postbox( $this->current_id );
+		$this->layout_postbox( (string) $this->current_id );
 
 	}
 
@@ -84,7 +84,7 @@ class UserMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, (string) $this->current_id ) ) {
 			return;
 		}
 

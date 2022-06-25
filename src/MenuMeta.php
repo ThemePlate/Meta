@@ -49,13 +49,13 @@ class MenuMeta extends BaseMeta {
 
 	public function add_box( string $item_id ) {
 
-		$this->current_id = $item_id;
+		$this->current_id = (int) $item_id;
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, $item_id ) ) {
 			return;
 		}
 
-		$this->layout_postbox( $this->current_id );
+		$this->layout_postbox( $item_id );
 
 	}
 
@@ -85,7 +85,7 @@ class MenuMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, (string) $this->current_id ) ) {
 			return;
 		}
 

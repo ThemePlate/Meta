@@ -44,7 +44,7 @@ class PostMeta extends BaseMeta {
 
 		$this->current_id = $post->ID;
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, (string) $this->current_id ) ) {
 			return;
 		}
 
@@ -54,7 +54,7 @@ class PostMeta extends BaseMeta {
 			$this->fields_group_key() . '_' . $config['form_id'],
 			$this->title,
 			function( WP_Post $post ) {
-				$this->layout_inside( $post->ID );
+				$this->layout_inside( (string) $post->ID );
 			},
 			null,
 			$config['context'],
@@ -95,7 +95,7 @@ class PostMeta extends BaseMeta {
 			return;
 		}
 
-		if ( ! MetaHelper::should_display( $this->config, $this->current_id ) ) {
+		if ( ! MetaHelper::should_display( $this->config, (string) $this->current_id ) ) {
 			return;
 		}
 
