@@ -76,7 +76,7 @@ class UserMeta extends BaseMeta {
 	}
 
 
-	public function maybe_wanted_page( string $hook_suffix ): void {
+	public function maybe_wanted_page(): void {
 
 		$screen = get_current_screen();
 
@@ -88,7 +88,7 @@ class UserMeta extends BaseMeta {
 			return;
 		}
 
-		FormHelper::enqueue_assets( $hook_suffix );
+		FormHelper::enqueue_assets( $screen->base . '.php' );
 
 	}
 
