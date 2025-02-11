@@ -30,13 +30,15 @@ class MetaHandlerTest extends WP_UnitTestCase {
 		$handler   = new MetaHandler( $data_type );
 		$post_id   = $this->factory()->post->create();
 
+		$this->assertIsInt( $post_id );
+
 		// Non-existent meta; returns default
-		$this->assertSame( $this->default, $handler->get_value( $this->field, '', $post_id ) );
+		$this->assertSame( $this->default, $handler->get_value( $this->field, '', (string) $post_id ) );
 
 		add_metadata( $data_type, $post_id, $this->data_key, 'wanted', true );
 
 		// Existing meta retrieves current value
-		$this->assertSame( 'wanted', $handler->get_value( $this->field, '', $post_id ) );
+		$this->assertSame( 'wanted', $handler->get_value( $this->field, '', (string) $post_id ) );
 	}
 
 	public function test_handling_with_data_prefix(): void {
@@ -45,11 +47,13 @@ class MetaHandlerTest extends WP_UnitTestCase {
 		$handler   = new MetaHandler( $data_type );
 		$term_id   = $this->factory()->term->create();
 
+		$this->assertIsInt( $term_id );
+
 		add_metadata( $data_type, $term_id, $this->data_key, 'no-prefix-value', true );
-		$this->assertSame( 'no-prefix-value', $handler->get_value( $this->field, '', $term_id ) );
+		$this->assertSame( 'no-prefix-value', $handler->get_value( $this->field, '', (string) $term_id ) );
 
 		add_metadata( $data_type, $term_id, $prefix . $this->data_key, 'with-prefix-value', true );
-		$this->assertSame( 'with-prefix-value', $handler->get_value( $this->field, $prefix, $term_id ) );
+		$this->assertSame( 'with-prefix-value', $handler->get_value( $this->field, $prefix, (string) $term_id ) );
 	}
 
 	public function test_handling_repeatable(): void {
@@ -58,11 +62,13 @@ class MetaHandlerTest extends WP_UnitTestCase {
 		$user_id   = $this->factory()->user->create();
 		$values    = array( 'first-value', 'second-value' );
 
+		$this->assertIsInt( $user_id );
+
 		foreach ( $values as $value ) {
 			add_metadata( $data_type, $user_id, $this->data_key, $value, false );
 		}
 
-		$this->assertSame( $values, $handler->get_value( $this->field, '', $user_id ) );
-		$this->assertSame( $this->default, $handler->get_value( $this->field, 'unknown', $user_id ) );
+		$this->assertSame( $values, $handler->get_value( $this->field, '', (string) $user_id ) );
+		$this->assertSame( array( $this->default ), $handler->get_value( $this->field, 'unknown', (string) $user_id ) );
 	}
 }
