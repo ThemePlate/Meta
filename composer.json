@@ -28,7 +28,7 @@
 		"test:integration": "themeplate test --type integration"
 	},
 	"require": {
-		"php": "^7.4|^8.0",
+		"php": "^7.4|^8.2",
 		"themeplate/core": "^2.0"
 	},
 	"require-dev": {
