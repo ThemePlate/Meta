@@ -74,7 +74,7 @@ abstract class BaseMeta extends Form {
 
 		$data = $this->get_nonce_data( $object_id );
 
-		return ! ( ! isset( $_POST[ $data['name'] ] ) || ! wp_verify_nonce( $_POST[ $data['name'] ], $data['action'] ) );
+		return isset( $_POST[ $data['name'] ] ) && wp_verify_nonce( $_POST[ $data['name'] ], $data['action'] );
 
 	}
 
@@ -109,7 +109,11 @@ abstract class BaseMeta extends Form {
 					add_metadata( $config['object_type'], $object_id, $key, $value );
 				}
 			} else {
-				if ( ( ! $stored && ! $updated ) || $stored === $updated ) {
+				if ( ! $stored && ! $updated ) {
+					continue;
+				}
+
+				if ( $stored === $updated ) {
 					continue;
 				}
 
