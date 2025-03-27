@@ -47,7 +47,7 @@ class MenuMeta extends BaseMeta {
 	}
 
 
-	public function add_box( string $item_id ) {
+	public function add_box( string $item_id ): void {
 
 		$this->current_id = (int) $item_id;
 

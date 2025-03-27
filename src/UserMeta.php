@@ -40,7 +40,7 @@ class UserMeta extends BaseMeta {
 	}
 
 
-	public function add_box( $user ) {
+	public function add_box( $user ): void {
 
 		$this->current_id = $user instanceof WP_User ? $user->ID : 0;
 

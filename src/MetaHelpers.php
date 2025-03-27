@@ -11,7 +11,7 @@ namespace ThemePlate\Meta;
 
 class MetaHelpers {
 
-	public static function default( $value, $object_id, $meta_key, $single, $meta_type ) {
+	public static function default( $value, int $object_id, string $meta_key, bool $single, string $meta_type ) {
 
 		$schema = apply_filters( "themeplate_{$meta_type}_meta_{$meta_key}_schema", array() );
 

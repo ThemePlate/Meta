@@ -44,7 +44,7 @@ class TermMeta extends BaseMeta {
 	}
 
 
-	public function add_box( $tag ) {
+	public function add_box( $tag ): void {
 
 		$this->current_id = $tag instanceof WP_Term ? $tag->term_id : 0;
 

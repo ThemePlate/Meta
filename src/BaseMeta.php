@@ -10,6 +10,7 @@
 namespace ThemePlate\Meta;
 
 use ThemePlate\Core\Config;
+use ThemePlate\Core\Fields;
 use ThemePlate\Core\Form;
 use ThemePlate\Core\Handler;
 use ThemePlate\Core\Helper\BoxHelper;
@@ -67,7 +68,7 @@ abstract class BaseMeta extends Form {
 
 	protected function can_save( int $object_id ): bool {
 
-		if ( null === $this->fields || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) {
+		if ( ! $this->fields instanceof Fields || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) {
 			return false;
 		}
 
@@ -132,7 +133,7 @@ abstract class BaseMeta extends Form {
 
 	public function build_schema( array $data ): array {
 
-		if ( null === $this->fields ) {
+		if ( ! $this->fields instanceof Fields ) {
 			return $data;
 		}
 
@@ -148,7 +149,7 @@ abstract class BaseMeta extends Form {
 
 	public function register_meta(): void {
 
-		if ( null === $this->fields ) {
+		if ( ! $this->fields instanceof Fields ) {
 			return;
 		}
 
