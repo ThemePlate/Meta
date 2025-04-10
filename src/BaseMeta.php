@@ -81,6 +81,10 @@ abstract class BaseMeta extends Form {
 
 	protected function save( int $object_id ): void {
 
+		if ( ! $this->fields instanceof Fields ) {
+			return;
+		}
+
 		$config = $this->config;
 
 		foreach ( $this->fields->get_collection() as $field ) {
