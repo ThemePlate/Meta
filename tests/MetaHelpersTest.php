@@ -10,6 +10,7 @@ use ThemePlate\Meta\MetaHelpers;
 use WP_UnitTestCase;
 
 class MetaHelpersTest extends WP_UnitTestCase {
+	/** @return array<string, array<int, mixed>> */
 	public static function for_default_values(): array {
 		return array(
 			'empty'      => array( '', '' ),
@@ -32,7 +33,10 @@ class MetaHelpersTest extends WP_UnitTestCase {
 		);
 	}
 
-	/** @dataProvider for_default_values */
+	/**
+	 * @param array<mixed> $schema
+	 * @dataProvider for_default_values
+	 */
 	public function test_default_values( $schema, string $expected ): void {
 		$meta_type = 'post';
 		$meta_key  = 'key';

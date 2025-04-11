@@ -17,6 +17,7 @@ use WP_User;
 
 class UserMeta extends BaseMeta {
 
+	/** @param array{object_type: string} $config */
 	protected function initialize( array &$config ): void {
 
 		$config['object_type'] = 'user';
@@ -24,6 +25,7 @@ class UserMeta extends BaseMeta {
 	}
 
 
+	/** @param array<string, Field|mixed> $collection */
 	public function fields( array $collection ): self {
 
 		$this->fields = new Fields( $collection );
@@ -50,6 +52,7 @@ class UserMeta extends BaseMeta {
 	}
 
 
+	/** @param WP_User|string $user */
 	public function add_box( $user ): void {
 
 		$this->current_id = $user instanceof WP_User ? $user->ID : 0;

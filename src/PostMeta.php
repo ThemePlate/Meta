@@ -20,6 +20,7 @@ class PostMeta extends BaseMeta {
 	use HasLocation;
 
 
+	/** @param array{object_type: string} $config */
 	protected function initialize( array &$config ): void {
 
 		$config['object_type'] = 'post';
@@ -27,6 +28,7 @@ class PostMeta extends BaseMeta {
 	}
 
 
+	/** @param array<string, Field|mixed> $collection */
 	public function fields( array $collection ): self {
 
 		$this->fields = new Fields( $collection );

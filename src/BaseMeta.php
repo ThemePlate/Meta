@@ -46,6 +46,7 @@ abstract class BaseMeta extends Form {
 	}
 
 
+	/** @return array{action: string, name: string} */
 	protected function get_nonce_data( int $object_id ): array {
 
 		$form_id = $this->config['form_id'];
@@ -139,6 +140,10 @@ abstract class BaseMeta extends Form {
 	}
 
 
+	/**
+	 * @param array<mixed> $data
+	 * @return array<mixed>
+	 */
 	public function build_schema( array $data ): array {
 
 		if ( ! $this->fields instanceof Fields ) {
