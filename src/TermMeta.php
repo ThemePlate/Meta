@@ -21,11 +21,10 @@ class TermMeta extends BaseMeta {
 	use HasLocation;
 
 
-	/** @param array{object_type: string} $config */
+	protected string $object_type = 'term';
+
+
 	protected function initialize( array &$config ): void {
-
-		$config['object_type'] = 'term';
-
 	}
 
 

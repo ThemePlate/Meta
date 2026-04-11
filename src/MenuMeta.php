@@ -19,11 +19,10 @@ class MenuMeta extends BaseMeta {
 	/** @var string[] */
 	protected array $locations = array();
 
+	protected string $object_type = 'post';
 
-	/** @param array{object_type: string} $config */
+
 	protected function initialize( array &$config ): void {
-
-		$config['object_type'] = 'post';
 
 		$this->locations = array( 'nav_menu_item' );
 
