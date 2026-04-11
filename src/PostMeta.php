@@ -9,7 +9,6 @@
 
 namespace ThemePlate\Meta;
 
-use ThemePlate\Core\Fields;
 use ThemePlate\Core\Helper\FormHelper;
 use ThemePlate\Core\Helper\MetaHelper;
 use ThemePlate\Meta\Traits\HasLocation;
@@ -24,16 +23,6 @@ class PostMeta extends BaseMeta {
 
 
 	protected function initialize( array &$config ): void {
-	}
-
-
-	/** @param array<string, Field|mixed> $collection */
-	public function fields( array $collection ): self {
-
-		$this->fields = new Fields( $collection );
-
-		return $this;
-
 	}
 
 

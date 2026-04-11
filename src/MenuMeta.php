@@ -9,7 +9,6 @@
 
 namespace ThemePlate\Meta;
 
-use ThemePlate\Core\Fields;
 use ThemePlate\Core\Helper\BoxHelper;
 use ThemePlate\Core\Helper\FormHelper;
 use ThemePlate\Core\Helper\MetaHelper;
@@ -32,16 +31,6 @@ class MenuMeta extends BaseMeta {
 	protected function fields_group_key(): string {
 
 		return parent::fields_group_key() . '_' . $this->current_id;
-
-	}
-
-
-	/** @param array<string, Field|mixed> $collection */
-	public function fields( array $collection ): self {
-
-		$this->fields = new Fields( $collection );
-
-		return $this;
 
 	}
 
