@@ -169,7 +169,7 @@ abstract class BaseMeta extends Form {
 		}
 
 		$prefix = $this->config['data_prefix'];
-		$types  = property_exists( $this, 'locations' ) ? $this->locations : array( '' );
+		$types  = $this->locations ?? array( '' );
 
 		add_filter( "default_{$this->object_type}_metadata", array( MetaHelpers::class, 'default' ), 10, 5 );
 
